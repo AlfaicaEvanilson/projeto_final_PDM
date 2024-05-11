@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medicine_reminder/constants.dart';
+import 'package:medicine_reminder/pagina/add_membro.dart';
+import 'package:medicine_reminder/pagina/definicoes.dart';
 import 'package:medicine_reminder/pagina/detalhes_medicamento/detalhes_medicamento.dart';
 import 'package:medicine_reminder/pagina/new_entry/nova_pagina.dart';
+import 'package:medicine_reminder/pagina/perfil.dart';
 import 'package:sizer/sizer.dart';
 
 class PaginaInicial extends StatelessWidget {
@@ -25,12 +28,69 @@ class PaginaInicial extends StatelessWidget {
           )
         ],
         backgroundColor: kPrimaryColor,
-        leading: IconButton(
-          onPressed: () {},
-          icon: IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.white,
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Center(
+                  child: Text(
+                    'LOGO',
+                    style: TextStyle(fontSize: 35),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_box_rounded),
+                title: Text(
+                  'Perfil',
+                  style: TextStyle(fontSize: 20, color: kOtherColor),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Perfil(),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              ListTile(
+                leading: Icon(Icons.add),
+                title: Text(
+                  'Adicionar membro',
+                  style: TextStyle(fontSize: 20, color: kOtherColor),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddMembro(),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(
+                  'Definições',
+                  style: TextStyle(fontSize: 20, color: kOtherColor),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Definicoes(),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),
@@ -205,7 +265,7 @@ class _MedicineCardState extends State<MedicineCard> {
               height: 0.3.h,
             ),
             Text(
-              'Every 8 hours',
+              'De 8 em 8 horas',
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
               style: Theme.of(context).textTheme.titleMedium,
